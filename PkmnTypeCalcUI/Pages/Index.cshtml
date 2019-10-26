@@ -1,0 +1,89 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Pokemon Type Calculator";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/css/index.css")" rel="stylesheet" type="text/css" />
+}
+<body>
+    <form>
+        <fieldset class="border p-2 mb-2">
+            <legend class="w-auto">Defending Pokemon Types</legend>
+            <table class="container-fluid text-center" style="border-collapse:collapse; width:100%;">
+                <tr>
+                    <td>Primary Type</td>
+                    <td>Secondary Type</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class="container-fluid bg-dark" style="color:@Html.DisplayFor(i => Model.SelectedPrimaryTypeColor)" asp-for="SelectedPrimaryTypeName" >
+                            @foreach (var pkmnType in Model.PrimaryPkmnTypeList)
+                            {
+                                if (pkmnType.TypeName == Model.SelectedPrimaryTypeName)
+                                {
+                                    <option style="color:@Html.DisplayFor(i => pkmnType.TypeColor);" selected="selected">
+                                        @Html.DisplayFor(i => pkmnType.TypeName)
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option style="color:@Html.DisplayFor(i => pkmnType.TypeColor);">
+                                        @Html.DisplayFor(i => pkmnType.TypeName)
+                                    </option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <select asp-for="SelectedSecondaryTypeName" class="container-fluid bg-dark" style="color:@Html.DisplayFor(i => Model.SelectedSecondaryTypeColor)">
+                            @foreach (var pkmnType in Model.SecondaryPkmnTypeList)
+                            {
+                                if (pkmnType.TypeName == Model.SelectedSecondaryTypeName)
+                                {
+                                    <option style="color:@Html.DisplayFor(i => pkmnType.TypeColor);" selected="selected">
+                                        @Html.DisplayFor(i => pkmnType.TypeName)
+                                    </option>
+                                }
+                                else
+                                {
+                                    <option style="color:@Html.DisplayFor(i => pkmnType.TypeColor);">
+                                        @Html.DisplayFor(i => pkmnType.TypeName)
+                                    </option>
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <input class="btn-dark container-fluid mt-2" type="submit" value="Show damage taken" />
+        </fieldset>
+    </form>
+    @if (Model.SelectedPrimaryTypeName != "(none)" || Model.SelectedSecondaryTypeName != "(none)")
+    {
+        <table class="container-fluid text-center table-bordered" style="border-collapse:collapse; width:100%;">
+            <tr class="border-bottom border-top border-white">
+                <th>
+                    Type
+                </th>
+                <th>
+                    Damage Multiplier
+                </th>
+            </tr>
+            @foreach (var pkmnType in Model.PkmnTypeList)
+            {
+                <tr style="background-color:@Html.DisplayFor(modelItem => pkmnType.TypeColor);">
+                    <td style="color:black; background-color:transparent">
+                        @Html.DisplayFor(modelItem => pkmnType.TypeName)
+                    </td>
+                    <td style="color:black; background-color:transparent">
+                        @Html.DisplayFor(modelItem => pkmnType.DmgMultiplier)x
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+
+</body>
+

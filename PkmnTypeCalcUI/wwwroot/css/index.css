@@ -1,0 +1,10 @@
+﻿table, tr, td {
+background-color: black;
+color: white;
+table-layout: fixed;
+}
+
+body{
+    background-color: black;
+    color: white;
+}
