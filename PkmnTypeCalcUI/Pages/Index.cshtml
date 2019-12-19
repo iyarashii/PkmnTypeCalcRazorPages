@@ -8,7 +8,7 @@
     <link href="@Url.Content("~/css/index.css")" rel="stylesheet" type="text/css" />
 }
 <body>
-    <form>
+    <form id="formID">
         <fieldset class="border p-2 mb-2">
             <legend class="w-auto">Defending Pokemon Types</legend>
             <table class="container-fluid text-center" style="border-collapse:collapse; width:100%;">
@@ -18,7 +18,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <select class="container-fluid bg-dark" style="color:@Html.DisplayFor(i => Model.SelectedPrimaryTypeColor)" asp-for="SelectedPrimaryTypeName" >
+                        @*<select class="container-fluid bg-dark"  asp-for="SelectedPrimaryTypeName" onchange="onSelectedIndexChanged(this)" style="color:@Html.DisplayFor(i => Model.SelectedPrimaryTypeColor)">*@
+                        <select class="container-fluid bg-dark"  asp-for="SelectedPrimaryTypeName" onchange="this.style.color=this.options[this.selectedIndex].style.color"
+                                style="color:@Html.DisplayFor(i => Model.SelectedPrimaryTypeColor)">
                             @foreach (var pkmnType in Model.PrimaryPkmnTypeList)
                             {
                                 if (pkmnType.TypeName == Model.SelectedPrimaryTypeName)
@@ -37,7 +39,9 @@
                         </select>
                     </td>
                     <td>
-                        <select asp-for="SelectedSecondaryTypeName" class="container-fluid bg-dark" style="color:@Html.DisplayFor(i => Model.SelectedSecondaryTypeColor)">
+                        @*<select asp-for="SelectedSecondaryTypeName" class="container-fluid bg-dark" onchange="onSelectedIndexChanged(this)" style="color:@Html.DisplayFor(i => Model.SelectedSecondaryTypeColor)">*@
+                        <select class="container-fluid bg-dark" asp-for="SelectedSecondaryTypeName" onchange="this.style.color=this.options[this.selectedIndex].style.color"
+                                style="color:@Html.DisplayFor(i => Model.SelectedSecondaryTypeColor)">
                             @foreach (var pkmnType in Model.SecondaryPkmnTypeList)
                             {
                                 if (pkmnType.TypeName == Model.SelectedSecondaryTypeName)
@@ -84,6 +88,5 @@
             }
         </table>
     }
-
 </body>
 

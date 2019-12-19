@@ -57,6 +57,7 @@ namespace PkmnTypeCalcUI.Pages
             if(SelectedPrimaryTypeName == null)
             {
                 SelectedPrimaryTypeName = "(none)";
+                SelectedPrimaryTypeColor = "white";
             }
             //if(SelectedPrimaryType == null)
             //{
@@ -69,19 +70,22 @@ namespace PkmnTypeCalcUI.Pages
             if (SelectedSecondaryTypeName == null)
             {
                 SelectedSecondaryTypeName = "(none)";
+                SelectedSecondaryTypeColor = "white";
             }
 
-            // check if both comboboxes select the (none) type
-            if (SelectedPrimaryTypeName == "(none)" && SelectedSecondaryTypeName == "(none)")
-            {
-                return;
-            }
+            
 
             selectedPrimaryType = PrimaryPkmnTypeList.Where(type => type.TypeName == SelectedPrimaryTypeName).FirstOrDefault();
             selectedSecondaryType = SecondaryPkmnTypeList.Where(type => type.TypeName == SelectedSecondaryTypeName).FirstOrDefault();
 
             SelectedPrimaryTypeColor = selectedPrimaryType.TypeColor;
             SelectedSecondaryTypeColor = selectedSecondaryType.TypeColor;
+
+            // check if both comboboxes select the (none) type
+            if (SelectedPrimaryTypeName == "(none)" && SelectedSecondaryTypeName == "(none)")
+            {
+                return;
+            }
 
             // calculate damage multiplier for each pkmn type in the list
             foreach (var pkmnType in PkmnTypeList)
