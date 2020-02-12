@@ -48,13 +48,17 @@ namespace PkmnTypeCalcUI.Pages
             // add empty pkmn types to the comboboxes
             PrimaryPkmnTypeList.Insert(0, PkmnTypeFactory.CreateEmptyPkmnType());
             SecondaryPkmnTypeList.Insert(0, PkmnTypeFactory.CreateEmptyPkmnType());
-
         }
 
         public void OnGet()
         {
+            //PrimaryPkmnTypeList = PkmnTypeFactory.GeneratePkmnTypeList();
+            //SecondaryPkmnTypeList = PkmnTypeFactory.GeneratePkmnTypeList();
+            //PrimaryPkmnTypeList.Insert(0, PkmnTypeFactory.CreateEmptyPkmnType());
+            //SecondaryPkmnTypeList.Insert(0, PkmnTypeFactory.CreateEmptyPkmnType());
+
             // check for nulls and change to (none) if types are not selected
-            if(SelectedPrimaryTypeName == null)
+            if (SelectedPrimaryTypeName == null)
             {
                 SelectedPrimaryTypeName = "(none)";
                 SelectedPrimaryTypeColor = "white";
@@ -73,10 +77,15 @@ namespace PkmnTypeCalcUI.Pages
                 SelectedSecondaryTypeColor = "white";
             }
 
+
             
 
             selectedPrimaryType = PrimaryPkmnTypeList.Where(type => type.TypeName == SelectedPrimaryTypeName).FirstOrDefault();
             selectedSecondaryType = SecondaryPkmnTypeList.Where(type => type.TypeName == SelectedSecondaryTypeName).FirstOrDefault();
+
+            // delete selected type from the other list
+            //PrimaryPkmnTypeList.Remove(SecondaryPkmnTypeList.Where(type => type.TypeName == SelectedSecondaryTypeName).FirstOrDefault());
+            //SecondaryPkmnTypeList.Remove(PrimaryPkmnTypeList.Where(type => type.TypeName == SelectedPrimaryTypeName).FirstOrDefault());
 
             SelectedPrimaryTypeColor = selectedPrimaryType.TypeColor;
             SelectedSecondaryTypeColor = selectedSecondaryType.TypeColor;
