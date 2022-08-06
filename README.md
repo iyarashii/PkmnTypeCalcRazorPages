@@ -1,4 +1,5 @@
 # PkmnTypeCalcRazorPages
+![Working app image](https://i.imgur.com/FT3gnWy.png)  
 Simple ASP.NET Razor Pages web app created as a way to learn ASP.NET. 
 This app shows damage multipliers that affect defending pokemon. It uses the same library as PkmnCalcWPF.   
 After selecting types and hitting the `Show damage taken` button it displays every possible attacking pokemon type and
