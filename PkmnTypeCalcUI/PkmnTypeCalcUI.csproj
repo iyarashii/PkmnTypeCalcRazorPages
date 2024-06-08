@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PokemonTypeLibrary\PokemonTypeLibrary.csproj" />
+    <PackageReference Include="PokemonTypeLibrary" Version="1.0.2" />
   </ItemGroup>
 
 </Project>

@@ -34,7 +34,7 @@ namespace PkmnTypeCalcUI.Pages
 
         // collection used by objectlistview
         [BindProperty]
-        public List<IPkmnType> PkmnTypeList { get; set; } = PkmnTypeFactory.GeneratePkmnTypeList();
+        public List<IPkmnType> PkmnTypeList { get; set; } = PkmnTypeFactory.GeneratePkmnTypeList().Where(x => x.GetType() != typeof(EmptyPkmnType)).ToList();
 
         [BindProperty(SupportsGet = true)]
         public string SelectedPrimaryTypeColor { get; set; }
@@ -48,10 +48,6 @@ namespace PkmnTypeCalcUI.Pages
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-
-            // add empty pkmn types to the comboboxes
-            PrimaryPkmnTypeList.Insert(0, PkmnTypeFactory.CreateEmptyPkmnType());
-            SecondaryPkmnTypeList.Insert(0, PkmnTypeFactory.CreateEmptyPkmnType());
         }
 
         public void OnGet()
